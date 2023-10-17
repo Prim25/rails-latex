@@ -69,10 +69,10 @@ class LatexToPdf
           begin
             Dir.chdir dir
             (runs - 1).times do
-              clean_exit = system command, *args, **kwargs
+              clean_exit = system command, *args, kwargs
               Process.exit! 1 unless clean_exit
             end
-            exec command, *args, **kwargs
+            exec command, *args, kwargs
           rescue
             File.open("input.log", 'a'){|io|
               io.write("#{$!.message}:\n#{$!.backtrace.join("\n")}\n")
